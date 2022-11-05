@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "no_control": "20415082060218",
+    "nombre": "Miguel Angel",
+    "ap": "Aguirre",
+    "am": "Pompa",
+    "direccion": {
+      "calle": "San Angel",
+      "colonia": "La Trinidad",
+      "no": 41,
+      "municipio": "Zumpango",
+      "cp": 55614
+    },
+    "casado": true,
+    "hermanos": ["Jesus", "Zandra"]
+  },
+  {
+    "id": 2,
+    "no_control": "3075087060219",
+    "nombre": "Karol Sherlyn",
+    "ap": "Altamirano",
+    "am": "Berrocal",
+    "direccion": {
+      "calle": "San Benito",
+      "colonia": "No c",
+      "no": 11,
+      "municipio": "Tecamac",
+      "cp": 55584
+    },
+    "casado": false,
+    "hermanos": ["Ni idea"]
+  },
+  {
+    "id": 3,
+    "no_control": "906918082960519",
+    "nombre": "Karla Mariana",
+    "ap": "Arias",
+    "am": "Rojas",
+    "direccion": {
+      "calle": "San Luis",
+      "colonia": "No c",
+      "no": 29,
+      "municipio": "Tecamac",
+      "cp": 55849
+    },
+    "casado": false,
+    "hermanos": ["Ni idea"]
+  }
+]
