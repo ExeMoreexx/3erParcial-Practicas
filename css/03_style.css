@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(36, 26, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(36, 26, 0, 1) 0%,
+    rgba(121, 89, 9, 1) 35%,
+    rgba(255, 187, 0, 1) 100%
+  );
+  text-align: center;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  margin: 20px;
+}
