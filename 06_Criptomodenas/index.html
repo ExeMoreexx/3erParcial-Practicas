@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criptomonedas</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/06_style.css" />
+  </head>
+  <body onload="opcionesCriptomoneda()">
+    <div class="contenedor">
+      <div class="row">
+        <div class="one-half column">
+          <img src="../img/img-criptomoneda.jpg" alt="image" />
+        </div>
+        <div class="one-half column">
+          <h1 class="head">Cotiza Criptomonedas Al Instante</h1>
+          <form>
+            <div id="msj-error"></div>
+            <label>Elige Tu Moneda</label>
+            <select onchange="cotizarMoneda()" id="moneda">
+              <option value="">-Seleccione-</option>
+              <option value="USD">Dolar De Estados Unidos</option>
+              <option value="MXN">Peso Mexicano</option>
+              <option value="EUR">Euro</option>
+              <option value="GBP">Libra Esterlina</option>
+            </select>
+            <label>Elige Tu Criptomoneda</label>
+            <select onchange="cotizarMoneda()" id="criptomoneda"></select>
+            <button type="button" class="boton" onclick="cotizarMoneda()">
+              Calcular
+            </button>
+          </form>
+          <div class="resultado" id="divResultado"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
