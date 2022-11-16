@@ -75,7 +75,9 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              <i class="bi bi-person-vcard me-2"></i>Iniciar Sesion
+            </h1>
             <button
               type="button"
               class="btn-close"
@@ -83,16 +85,43 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="iniciarEmail"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="iniciarPassword"
+                />
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
-              class="btn btn-secondary"
+              class="btn btn-danger"
               data-bs-dismiss="modal"
             >
-              Close
+              <i class="bi bi-x-square m-2"></i>
+              Cancelar
             </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+              <i class="bi bi-box-arrow-right m-2"></i>Iniciar
+            </button>
           </div>
         </div>
       </div>
