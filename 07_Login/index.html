@@ -46,7 +46,8 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Crear Cuenta</a>
+              <a class="nav-link" href="#" data-bs-toggle="modal"
+              data-bs-target="#crearModal">Crear Cuenta</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Cerrar Sesion</a>
@@ -121,6 +122,70 @@
             </button>
             <button type="button" class="btn btn-success" data-bs-dismiss="modal">
               <i class="bi bi-box-arrow-right m-2"></i>Iniciar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Modal Crear Cuenta-->
+    <div
+      class="modal fade"
+      id="crearModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                <i class="bi bi-person-fill-add me-2"></i>Crear Cuenta
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="crearEmail"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="crearPassword"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-x-square m-2"></i>
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                <i class="bi bi-box-arrow-down me-2"></i>Crear
             </button>
           </div>
         </div>
