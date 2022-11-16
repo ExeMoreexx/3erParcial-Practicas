@@ -1,0 +1,28 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Comic";
+  src: url("../font/Comic.otf");
+}
+
+body {
+  text-align: center;
+  background: rgb(127, 130, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(127, 130, 255, 1) 0%,
+    rgba(130, 131, 255, 1) 35%,
+    rgba(173, 167, 255, 1) 100%
+  );
+}
+
+h1 {
+  font-family: "Comic";
+  font-size: 60px;
+  color: blue;
+  margin: 20px;
+}
