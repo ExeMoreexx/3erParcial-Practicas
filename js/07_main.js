@@ -8,12 +8,21 @@ const auth = getAuth(app);
 
 const btnCrearCuenta = document.querySelector("#btnCrearCuenta");
 
-btnCrearCuenta.addEventListener("click", async (e) => {
-  e.preventDefault();
-  const email = document.querySelector("#crearEmail");
-  const password = document.querySelector("#crearPassword");
-  console.log(email.value, password.value);
+btnCrearCuenta.addEventListener(
+  "click",
+  async (e) => {
+    e.preventDefault();
+    const email = document.querySelector("#crearEmail");
+    const password = document.querySelector("#crearPassword");
+    console.log(email.value, password.value);
 
-  const respuesta = await createUserWithEmailAndPassword(auth, email, password);
-  console.log(respuesta.user);
-});
+    const respuesta = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    console.log(respuesta.user);
+  },
+
+  Swal.fire("Good job!", "You clicked the button!", "success")
+);
