@@ -6,13 +6,30 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
+  signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
+let user = null;
+
 const auth = getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+  const container = document.querySelector("#container");
+  checarEstado(user);
+  if (user) {
+    container.innerHTML = `<h1>Bienvenido ${user.email}</h1>`;
+    const uid = user.uid;
+  } else {
+    container.innerHTML = `<h1>No Hay Usuario</h1>`;
+  }
+});
+
 const provier = new GoogleAuthProvider();
 const btnCrear = document.querySelector("#btnCrear");
 const btnGoogle = document.querySelector("#btnGoogle");
 const btnIniciar = document.querySelector("#btnIniciar");
+const btnCerrar = document.querySelector("#btnCerrar");
 
 btnIniciar.addEventListener("click", async (e) => {
   e.preventDefault();
@@ -20,44 +37,102 @@ btnIniciar.addEventListener("click", async (e) => {
   const password = document.querySelector("#iniciarPassword");
   console.log(email.value, password.value);
 
+  // try {
+  //   const res = await signInWithEmailAndPassword(
+  //     auth,
+  //     email.value,
+  //     password.value
+  //   );
+  //   console.log(res.user);
+  //   const user = res.user;
+  //   Swal.fire('Bienvenido Nuevamente!!');
+  //   var myModalEl = document.getElementById("iniciarModal");
+  //   var modal = bootstrap.Modal.getInstance(myModalEl);
+  //   modal.hide();
+  //   const res2 = await onAuthStateChanged(auth, (user) => {
+  //     const container = document.querySelector("#container");
+  //     if (user) {
+  //       container.innerHTML = `<h1>${user.email} </h1>`;
+  //       document.querySelector("#iniciar").style.display = "none";
+  //       document.querySelector("#crear").style.display = "none";
+  //       const uid = user.uid;
+  //     } else {
+  //       container.innerHTML = `<h1>No Hay Usuarios!!</h1>`;
+  //     }
+  //   });
+  // } catch (error) {
+  //   Swal.fire("Usuario y/o Password Incorrectos");
+  // }
+});
+
+btnGoogle.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const provier = new GoogleAuthProvider();
+  try {
+    const credentials = await signInWithPopup(auth, provier);
+    user = credentials.user;
+    const modalInstance = bootstrap.Modal.getInstance(
+      btnGoogle.closest(".modal")
+    );
+    modalInstance.hide();
+    checarEstado(user);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+const checarEstado = (user = null) => {
+  console.log(user);
+  if ((user = null)) {
+    document.querySelector("#iniciar").getElementsByClassName.display = "block";
+    document.querySelector("#crear").getElementsByClassName.display = "block";
+    document.querySelector("#btnCerrar").getElementsByClassName.display =
+      "none";
+  } else {
+    document.querySelector("#iniciar").getElementsByClassName.display = "none";
+    document.querySelector("#crear").getElementsByClassName.display = "none";
+    document.querySelector("#btnCerrar").getElementsByClassName.display =
+      "block";
+  }
+};
+
+btnCerrar.addEventListener("click", async (e) => {
+  e.preventDefault();
+  try {
+    await signOut(auth);
+    checarEstado();
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+btnIniciar.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const email = document.querySelector("#iniciarEmail");
+  const password = document.querySelector("#iniciarPassword");
   try {
     const res = await signInWithEmailAndPassword(
       auth,
       email.value,
       password.value
     );
-    console.log(res.user);
-    const user = res.user;
-    Swal.fire('Bienvenido Nuevamente!!');
+    user = res.user;
+    Swal.fire("Bienvenido!!");
     var myModalEl = document.getElementById("iniciarModal");
     var modal = bootstrap.Modal.getInstance(myModalEl);
     modal.hide();
-    const res2 = await onAuthStateChanged(auth, (user) => {
-      const container = document.querySelector("#container");
-      if (user) {
-        container.innerHTML = `<h1>${user.email} </h1>`;
-        document.querySelector("#iniciar").style.display = "none";
-        document.querySelector("#crear").style.display = "none";
-        const uid = user.uid;
-      } else {
-        container.innerHTML = `<h1>No Hay Usuarios!!</h1>`;
-      }
-    });
   } catch (error) {
-    Swal.fire("Usuario y/o Password Incorrectos");
+    Swal.fire("Usuario y/o Contraseña Incorrecta!");
   }
 });
-
-btnGoogle.addEventListener("click", async (e) => {});
 
 btnCrear.addEventListener("click", async (e) => {
   e.preventDefault();
   const email = document.querySelector("#crearEmail");
   const password = document.querySelector("#crearPassword");
-  console.log(email.value, password.value);
+  //console.log(email.value, password.value);
   var myModalEl = document.getElementById("crearModal");
   var modal = bootstrap.Modal.getInstance(myModalEl);
-
   try {
     const respuesta = await createUserWithEmailAndPassword(
       auth,
@@ -76,24 +151,25 @@ btnCrear.addEventListener("click", async (e) => {
   } catch (error) {
     console.log(error.code);
     const code = error.code;
-    if (code === "auth/invalid-email") {
+    if (code == "auth/invalid-email") {
       Swal.fire({
         icon: "error",
-
         text: "Email Invalido!",
       });
-    } else if (code === "auth/weak-password") {
+    }
+    if (code == "auth/weak-password") {
       Swal.fire({
         icon: "error",
-
         text: "Password Invalida!",
       });
-    } else if (code === "auth/email-already-in-user") {
+    }
+    if (code == "auth/email-already-in-user") {
       Swal.fire({
         icon: "error",
-
         text: "Email Ya Esta Registrado!",
       });
     }
   }
 });
+
+checarEstado();
