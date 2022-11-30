@@ -83,15 +83,15 @@ btnGoogle.addEventListener("click", async (e) => {
 
 const checarEstado = (user = null) => {
   console.log(user);
-  if ((user = null)) {
-    document.querySelector("#iniciar").getElementsByClassName.display = "block";
-    document.querySelector("#crear").getElementsByClassName.display = "block";
-    document.querySelector("#btnCerrar").getElementsByClassName.display =
+  if (user == null) {
+    document.querySelector("#iniciar").style.display = "block";
+    document.querySelector("#crear").style.display = "block";
+    document.querySelector("#btnCerrar").style.display =
       "none";
   } else {
-    document.querySelector("#iniciar").getElementsByClassName.display = "none";
-    document.querySelector("#crear").getElementsByClassName.display = "none";
-    document.querySelector("#btnCerrar").getElementsByClassName.display =
+    document.querySelector("#iniciar").style.display = "none";
+    document.querySelector("#crear").style.display = "none";
+    document.querySelector("#btnCerrar").style.display =
       "block";
   }
 };
