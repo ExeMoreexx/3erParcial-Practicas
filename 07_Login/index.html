@@ -210,6 +210,8 @@
       </div>
     </div>
 
+    <!-- Modal AGG Jugador-->
+
     <div
       class="modal fade"
       id="addModal"
@@ -230,74 +232,72 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="num"
-                placeholder="Num"
-              />
+          <form id="formAddJugador">
+            <div class="modal-body">
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-25 me-2"
+                  id="num"
+                  placeholder="Num"
+                />
+                <input
+                  type="text"
+                  class="form-control w-75"
+                  id="nombre"
+                  placeholder="Nombre"
+                />
+              </div>
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-75 me-2"
+                  id="apellido"
+                  placeholder="Apellido"
+                />
+                <input
+                  type="text"
+                  class="form-control w-25"
+                  id="edad"
+                  placeholder="Edad"
+                />
+              </div>
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-50 me-2"
+                  id="nacionalidad"
+                  placeholder="Nacionalidad"
+                />
+                <input
+                  type="text"
+                  class="form-control w-50"
+                  id="posicion"
+                  placeholder="Posicion"
+                />
+              </div>
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-75 me-2"
+                  id="goles"
+                  placeholder="Goles"
+                />
+                <input
+                  type="text"
+                  class="form-control w-75"
+                  id="asistencias"
+                  placeholder="Asistencias"
+                />
+              </div>
             </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="nombre"
-                placeholder="Nombre"
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="apellido"
-                placeholder="Apellido"
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="edad"
-                placeholder="Edad"
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="nacionalidad"
-                placeholder="Nacionalidad"
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="posicion"
-                placeholder="Posicion"
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="goles"
-                placeholder="Goles"
-              />
-            </div>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="asistencias"
-                placeholder="Asistencias"
-              />
-            </div>
-          </div>
+          </form>
           <div class="modal-footer">
-            <button type="button" class="btn btn-success" id="btnAgregarAlumno">
+            <button
+              type="button"
+              class="btn btn-success"
+              id="btnAgregarJugador"
+            >
               <i class="bi bi-box-arrow-down m-1"></i>
               Guardar
             </button>
@@ -314,6 +314,109 @@
       </div>
     </div>
 
+    <!-- Modal Edit Jugador-->
+
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Editar Jugador
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <form id="formEditJugador">
+            <div class="modal-body">
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-25 me-2"
+                  id="enum"
+                  placeholder="Num"
+                />
+                <input
+                  type="text"
+                  class="form-control w-75"
+                  id="enombre"
+                  placeholder="Nombre"
+                />
+              </div>
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-75 me-2"
+                  id="eapellido"
+                  placeholder="Apellido"
+                />
+                <input
+                  type="text"
+                  class="form-control w-25"
+                  id="eedad"
+                  placeholder="Edad"
+                />
+              </div>
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-50 me-2"
+                  id="enacionalidad"
+                  placeholder="Nacionalidad"
+                />
+                <input
+                  type="text"
+                  class="form-control w-50"
+                  id="eposicion"
+                  placeholder="Posicion"
+                />
+              </div>
+              <div class="mb-3 d-flex">
+                <input
+                  type="text"
+                  class="form-control w-75 me-2"
+                  id="egoles"
+                  placeholder="Goles"
+                />
+                <input
+                  type="text"
+                  class="form-control w-75"
+                  id="easistencias"
+                  placeholder="Asistencias"
+                />
+              </div>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              id="btnGuardarJugador"
+            >
+              <i class="bi bi-box-arrow-down m-1"></i>
+              Guardar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-x-square m-1"></i>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
     <script src="../js/crud.js" type="module"></script>
     <script src="../js/07_main.js" type="module"></script>
     <script src="../js/sweetalert2.all.min.js"></script>

@@ -32,30 +32,30 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     <td>${jugador.apellido}</td>
                     <td>${jugador.edad}</td>
                     <td>${jugador.nacionalidad}</td>
-                    <td>${jugador.asistencias}</td>
-                    <td>${jugador.goles}</td>
                     <td>${jugador.posicion}</td>
-                    <td><button class="btn btn-danger btnEliminarAlumno" data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
-                    <td><button class="btn btn-primary btnEditarAlumno" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pencil"></i></button></td>
+                    <td>${jugador.goles}</td>
+                    <td>${jugador.asistencias}</td>
+                    <td><button class="btn btn-danger btnEliminarJugador" data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
+                    <td><button class="btn btn-primary btnEditarJugador" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pencil"></i></button></td>
                 </tr>`;
     });
 
-    const btnsDelete = document.querySelectorAll(".btnEliminarAlumno");
+    const btnsDelete = document.querySelectorAll(".btnEliminarJugador");
     //console.log(btnsDelete);
     btnsDelete.forEach((btn, idx) =>
       btn.addEventListener("click", () => {
         id = btn.dataset.id;
         console.log(btn.dataset.id);
         Swal.fire({
-          title: "Estás seguro de eliminar es Alumno?",
+          title: "Estas Seguro De Eliminar Este Jugador??",
           showDenyButton: true,
           confirmButtonText: "Si",
           denyButtonText: `No`,
         }).then(async (result) => {
           try {
             if (result.isConfirmed) {
-              await deleteDoc(doc(db, "alumnos", id));
-              Swal.fire("REGISTRO ELIMINADO!!!");
+              await deleteDoc(doc(db, "jugadores", id));
+              Swal.fire("Jugador ELIMINADO!!!");
             }
           } catch (error) {
             Swal.fire("ERROR AL ELIMINAR REGISTRO");
@@ -64,19 +64,22 @@ window.addEventListener("DOMContentLoaded", async (e) => {
       })
     );
 
-    const btnsEdit = document.querySelectorAll(".btnEditarAlumno");
-    btnsEdit.forEach((btn) => {
+    const btnEditarJugador = document.querySelectorAll(".btnEditarJugador");
+    btnEditarJugador.forEach((btn) => {
       btn.addEventListener("click", async (e) => {
         try {
           id = btn.dataset.id;
           console.log(id);
-          const data = await getDoc(doc(db, "alumnos", id));
-          const alumno = data.data();
-          document.querySelector("#enocontrol").value = alumno.nocontrol;
-          document.querySelector("#enombre").value = alumno.nombre;
-          document.querySelector("#eapaterno").value = alumno.apaterno;
-          document.querySelector("#eamaterno").value = alumno.amaterno;
-          document.querySelector("#ecarrera").value = alumno.carrera;
+          const data = await getDoc(doc(db, "jugadores", id));
+          const jugador = data.data();
+          document.querySelector("#enum").value = jugador.num;
+          document.querySelector("#enombre").value = jugador.nombre;
+          document.querySelector("#eapellido").value = jugador.apellido;
+          document.querySelector("#eedad").value = jugador.edad;
+          document.querySelector("#enacionalidad").value = jugador.nacionalidad;
+          document.querySelector("#eposicion").value = jugador.posicion;
+          document.querySelector("#egoles").value = jugador.goles;
+          document.querySelector("#easistencias").value = jugador.asistencias;
           editStatus = true;
           id = data.id;
         } catch (error) {
@@ -87,29 +90,35 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   });
 });
 
-const btnAgregarAlumno = document.querySelector("#btnAgregarAlumno");
-btnAgregarAlumno.addEventListener("click", () => {
-  const nocontrol = document.querySelector("#nocontrol").value;
+const btnAgregarJugador = document.querySelector("#btnAgregarJugador");
+btnAgregarJugador.addEventListener("click", () => {
+  const num = document.querySelector("#num").value;
   const nombre = document.querySelector("#nombre").value;
-  const apaterno = document.querySelector("#apaterno").value;
-  const amaterno = document.querySelector("#amaterno").value;
-  const carrera = document.querySelector("#carrera").value;
+  const apellido = document.querySelector("#apellido").value;
+  const edad = document.querySelector("#edad").value;
+  const nacionalidad = document.querySelector("#nacionalidad").value;
+  const posicion = document.querySelector("#posicion").value;
+  const goles = document.querySelector("#goles").value;
+  const asistencias = document.querySelector("#asistencias").value;
 
   if (
-    nocontrol == "" ||
+    num == "" ||
     nombre == "" ||
-    apaterno == "" ||
-    amaterno == "" ||
-    carrera == ""
+    apellido == "" ||
+    edad == "" ||
+    nacionalidad == "" ||
+    posicion == "" ||
+    goles == "" ||
+    asistencias == ""
   ) {
-    Swal.fire("falta llenar Campos");
+    Swal.fire("Falta Llenar Campos");
     return;
   }
 
-  const alumno = { nocontrol, nombre, apaterno, amaterno, carrera };
+  const jugador = { num, nombre, apellido, edad, nacionalidad, posicion, goles, asistencias };
 
   if (!editStatus) {
-    addDoc(coleccion, alumno);
+    addDoc(coleccion, jugador);
     bootstrap.Modal.getInstance(document.getElementById("addModal")).hide();
   }
 
@@ -118,32 +127,38 @@ btnAgregarAlumno.addEventListener("click", () => {
     title: "EXITO",
     text: "Se guardo correctamente!",
   });
-  document.querySelector("#formAddAlumno").reset();
+  document.querySelector("#formAddJugador").reset();
 });
 
-const btnGuardarAlumno = document.querySelector("#btnGuardarAlumno");
-btnGuardarAlumno.addEventListener("click", () => {
-  const nocontrol = document.querySelector("#enocontrol").value;
+const btnGuardarJugador = document.querySelector("#btnGuardarJugador");
+btnGuardarJugador.addEventListener("click", () => {
+  const num = document.querySelector("#enum").value;
   const nombre = document.querySelector("#enombre").value;
-  const apaterno = document.querySelector("#eapaterno").value;
-  const amaterno = document.querySelector("#eamaterno").value;
-  const carrera = document.querySelector("#ecarrera").value;
+  const apellido = document.querySelector("#eapellido").value;
+  const edad = document.querySelector("#eedad").value;
+  const nacionalidad = document.querySelector("#enacionalidad").value;
+  const posicion = document.querySelector("#eposicion").value;
+  const goles = document.querySelector("#egoles").value;
+  const asistencias = document.querySelector("#easistencias").value;
 
   if (
-    nocontrol == "" ||
+    num == "" ||
     nombre == "" ||
-    apaterno == "" ||
-    amaterno == "" ||
-    carrera == ""
+    apellido == "" ||
+    edad == "" ||
+    nacionalidad == "" ||
+    posicion == "" ||
+    goles == "" ||
+    asistencias == ""
   ) {
-    Swal.fire("falta llenar Campos");
+    Swal.fire("Falta Llenar Campos");
     return;
   }
 
-  const alumno = { nocontrol, nombre, apaterno, amaterno, carrera };
+  const jugador = { num, nombre, apellido, edad, nacionalidad, posicion, goles, asistencias };
 
   if (editStatus) {
-    updateDoc(doc(db, "alumnos", id), alumno);
+    updateDoc(doc(db, "jugadores", id), jugador);
     editStatus = false;
     id = "";
     bootstrap.Modal.getInstance(document.getElementById("editModal")).hide();
@@ -152,7 +167,7 @@ btnGuardarAlumno.addEventListener("click", () => {
   Swal.fire({
     icon: "success",
     title: "EXITO",
-    text: "Se guardo correctamente!",
+    text: "Se Guardo Correctamente!",
   });
-  document.querySelector("#formEditAlumno").reset();
+  document.querySelector("#formEditJugador").reset();
 });
