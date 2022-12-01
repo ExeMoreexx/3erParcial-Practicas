@@ -18,7 +18,32 @@ onAuthStateChanged(auth, (user) => {
   const container = document.querySelector("#container");
   checarEstado(user);
   if (user) {
-    container.innerHTML = `<h1>Bienvenido ${user.email}</h1>`;
+    container.innerHTML = `<h1>Bienvenido ${user.email}</h1>
+    <button
+            class="btn btn-success btn-lg float-end m-2"
+            data-bs-toggle="modal"
+            data-bs-target="#addModal"
+          >
+            <i class="bi bi-plus-square m-2"></i>Agregar
+          </button>
+          <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Nacionalidad</th>
+                <th scope="col">Posicion</th>
+                <th scope="col">Goles</th>
+                <th scope="col">Asistencias</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody id="lista"></tbody>
+          </table>
+    `;
     const uid = user.uid;
   } else {
     container.innerHTML = `<h1>No Hay Usuario</h1>`;
@@ -86,13 +111,11 @@ const checarEstado = (user = null) => {
   if (user == null) {
     document.querySelector("#iniciar").style.display = "block";
     document.querySelector("#crear").style.display = "block";
-    document.querySelector("#btnCerrar").style.display =
-      "none";
+    document.querySelector("#btnCerrar").style.display = "none";
   } else {
     document.querySelector("#iniciar").style.display = "none";
     document.querySelector("#crear").style.display = "none";
-    document.querySelector("#btnCerrar").style.display =
-      "block";
+    document.querySelector("#btnCerrar").style.display = "block";
   }
 };
 
