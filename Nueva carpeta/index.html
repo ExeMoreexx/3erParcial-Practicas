@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">FIREBASE</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#iniciarModal"
+                id="iniciar"
+                >Iniciar sesion</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#crearModal"
+                id="crear"
+                >Crear cuenta</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" id="btnCerrar">Cerrar sesion</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="card text-center m-4">
+      <div class="card-header">CRUD PRODUCTOS</div>
+      <div class="card-body" id="container">
+        <h5 class="card-title">Mi primera vez con firebase</h5>
+      </div>
+      <div class="card-footer text-muted">
+        Design By Antonio & Alejandro 2022
+      </div>
+    </div>
+
+    <!-- Modal Iniciar Sesion-->
+    <div
+      class="modal fade"
+      id="iniciarModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Iniciar sesion
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Correo Electronico</label
+                >
+                <input
+                  required
+                  type="email"
+                  class="form-control"
+                  id="iniciarEmail"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  required
+                  type="password"
+                  class="form-control"
+                  id="iniciarPassword"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-x-square m-2"></i>
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-dark" id="btnGoogle">
+              <i class="bi bi-google me-2"></i>Google
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+              id="btnIniciar"
+            >
+              <i class="bi bi-box-arrow-right m-2"></i>Iniciar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Crear Cuenta-->
+    <div
+      class="modal fade"
+      id="crearModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Crear cuenta
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Correo Electronico</label
+                >
+                <input
+                  required
+                  type="email"
+                  class="form-control"
+                  id="crearEmail"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  required
+                  type="password"
+                  class="form-control"
+                  id="crearPassword"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-x-square m-2"></i>
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-success" id="btnCrear">
+              <i class="bi bi-box-arrow-down me-2"></i>Crear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal agregar producto-->
+
+    <div
+      class="modal fade"
+      id="addModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Agregar Producto
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <form id="formAddProductos">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Id:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="id"
+                  placeholder="Id"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Nombre:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombre"
+                  placeholder="Nombre"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Stocks:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="stock"
+                  placeholder="Stocks"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Proveedor:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="proveedor"
+                  placeholder="Proveedor"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Codigo de barra:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="codigo"
+                  placeholder="Codigo de barra"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Caducidad:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="caducidad"
+                  placeholder="Caducidad"
+                />
+              </div>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              id="btnAgregarPodructo"
+            >
+              <i class="bi bi-box-arrow-down m-1"></i>
+              Guardar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-x-square m-1"></i>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal editar Producto-->
+
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Editar Producto
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <form id="formEditProducto">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Id:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eid"
+                  placeholder="Id"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Nombre:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="enombre"
+                  placeholder="Nombre"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Stocks:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="estock"
+                  placeholder="Stocks"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Proveedor:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="eproveedor"
+                  placeholder="Proveedor"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Codigo de barra:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ecodigo"
+                  placeholder="Codigo de barra"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Caducidad:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="ecaducidad"
+                  placeholder="Caducidad"
+                />
+              </div>
+            </div>
+          </form>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              id="btnGuardarProducto"
+            >
+              <i class="bi bi-box-arrow-down m-1"></i>
+              Guardar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              <i class="bi bi-x-square m-1"></i>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="crud.js" type="module"></script>
+    <script src="main.js" type="module"></script>
+    <script src="/sweetalert2.all.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
