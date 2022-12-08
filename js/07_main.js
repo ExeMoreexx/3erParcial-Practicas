@@ -8,6 +8,7 @@ import {
   onAuthStateChanged,
   signOut,
   signInWithPopup,
+  GithubAuthProvider
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 let user = null;
@@ -37,8 +38,8 @@ onAuthStateChanged(auth, (user) => {
                 <th scope="col">Posicion</th>
                 <th scope="col">Goles</th>
                 <th scope="col">Asistencias</th>
-                <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
+                <th scope="col">Editar</th>
               </tr>
             </thead>
             <tbody id="lista"></tbody>
@@ -51,6 +52,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 const provier = new GoogleAuthProvider();
+const git = new GithubAuthProvider();
 const btnCrear = document.querySelector("#btnCrear");
 const btnGoogle = document.querySelector("#btnGoogle");
 const btnIniciar = document.querySelector("#btnIniciar");
@@ -61,33 +63,6 @@ btnIniciar.addEventListener("click", async (e) => {
   const email = document.querySelector("#iniciarEmail");
   const password = document.querySelector("#iniciarPassword");
   console.log(email.value, password.value);
-
-  // try {
-  //   const res = await signInWithEmailAndPassword(
-  //     auth,
-  //     email.value,
-  //     password.value
-  //   );
-  //   console.log(res.user);
-  //   const user = res.user;
-  //   Swal.fire('Bienvenido Nuevamente!!');
-  //   var myModalEl = document.getElementById("iniciarModal");
-  //   var modal = bootstrap.Modal.getInstance(myModalEl);
-  //   modal.hide();
-  //   const res2 = await onAuthStateChanged(auth, (user) => {
-  //     const container = document.querySelector("#container");
-  //     if (user) {
-  //       container.innerHTML = `<h1>${user.email} </h1>`;
-  //       document.querySelector("#iniciar").style.display = "none";
-  //       document.querySelector("#crear").style.display = "none";
-  //       const uid = user.uid;
-  //     } else {
-  //       container.innerHTML = `<h1>No Hay Usuarios!!</h1>`;
-  //     }
-  //   });
-  // } catch (error) {
-  //   Swal.fire("Usuario y/o Password Incorrectos");
-  // }
 });
 
 btnGoogle.addEventListener("click", async (e) => {
@@ -98,6 +73,22 @@ btnGoogle.addEventListener("click", async (e) => {
     user = credentials.user;
     const modalInstance = bootstrap.Modal.getInstance(
       btnGoogle.closest(".modal")
+    );
+    modalInstance.hide();
+    checarEstado(user);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+btnGitHub.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const git = new GithubAuthProvider();
+  try {
+    const credentials = await signInWithPopup(auth, git);
+    user = credentials.user;
+    const modalInstance = bootstrap.Modal.getInstance(
+      btnGitHub.closest(".modal")
     );
     modalInstance.hide();
     checarEstado(user);

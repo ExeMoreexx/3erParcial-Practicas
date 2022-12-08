@@ -29,14 +29,12 @@ onAuthStateChanged(auth, (user) => {
           <table class="table">
             <thead class="table-dark">
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">ID</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Nacionalidad</th>
-                <th scope="col">Posicion</th>
-                <th scope="col">Goles</th>
-                <th scope="col">Asistencias</th>
+                <th scope="col">Stocks</th>
+                <th scope="col">Proveedor</th>
+                <th scope="col">Codigo</th>
+                <th scope="col">Caducidad</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>

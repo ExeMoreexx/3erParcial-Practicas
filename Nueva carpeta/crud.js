@@ -86,8 +86,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
   });
 });
 
-const btnAgregarProducto = document.querySelector("#btnAgregarProducto");
-btnAgregarProducto.addEventListener("click", () => {
+const btnAgregarProdructo = document.querySelector("#btnAgregarProdructo");
+btnAgregarProdructo.addEventListener("click", () => {
   const id = document.querySelector("#id").value;
   const nombre = document.querySelector("#nombre").value;
   const stock = document.querySelector("#stock").value;
