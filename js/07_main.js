@@ -8,7 +8,7 @@ import {
   onAuthStateChanged,
   signOut,
   signInWithPopup,
-  GithubAuthProvider
+  GithubAuthProvider,
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
 
 let user = null;
@@ -52,7 +52,7 @@ onAuthStateChanged(auth, (user) => {
 });
 
 const provier = new GoogleAuthProvider();
-const git = new GithubAuthProvider();
+const orovider = new GithubAuthProvider();
 const btnCrear = document.querySelector("#btnCrear");
 const btnGoogle = document.querySelector("#btnGoogle");
 const btnIniciar = document.querySelector("#btnIniciar");
@@ -83,10 +83,10 @@ btnGoogle.addEventListener("click", async (e) => {
 
 btnGitHub.addEventListener("click", async (e) => {
   e.preventDefault();
-  const git = new GithubAuthProvider();
+  const orovider = new GithubAuthProvider();
   try {
-    const credentials = await signInWithPopup(auth, git);
-    user = credentials.user;
+    const credential = await signInWithPopup(auth, orovider);
+    user = credential.user;
     const modalInstance = bootstrap.Modal.getInstance(
       btnGitHub.closest(".modal")
     );

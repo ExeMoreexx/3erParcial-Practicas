@@ -22,7 +22,7 @@ const onGetAlumnos = (callback) => onSnapshot(coleccion, callback);
 window.addEventListener("DOMContentLoaded", async (e) => {
   onGetAlumnos((querySnapshot) => {
     const divAlumnos = document.querySelector("#lista");
-    divAlumnos.innerHTML = "";
+    divAlumnos.innerHTML = '';
     querySnapshot.forEach((doc) => {
       const jugador = doc.data();
       divAlumnos.innerHTML += `
