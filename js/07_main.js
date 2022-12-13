@@ -30,6 +30,7 @@ onAuthStateChanged(auth, (user) => {
           <table class="table">
             <thead class="table-dark">
               <tr>
+                <th scope="col">ID</th>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Apellido</th>
@@ -40,6 +41,7 @@ onAuthStateChanged(auth, (user) => {
                 <th scope="col">Asistencias</th>
                 <th scope="col">Eliminar</th>
                 <th scope="col">Editar</th>
+                <th scope="col">QR</th>
               </tr>
             </thead>
             <tbody id="lista"></tbody>

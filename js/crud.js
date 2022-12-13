@@ -26,7 +26,8 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     querySnapshot.forEach((doc) => {
       const jugador = doc.data();
       divAlumnos.innerHTML += `
-                <tr>
+                <tr id="formulario">
+                    <td>${doc.id}</td>
                     <td>${jugador.num}</td>
                     <td>${jugador.nombre}</td>
                     <td>${jugador.apellido}</td>
@@ -36,9 +37,21 @@ window.addEventListener("DOMContentLoaded", async (e) => {
                     <td>${jugador.goles}</td>
                     <td>${jugador.asistencias}</td>
                     <td><button class="btn btn-danger btnEliminarJugador" data-id="${doc.id}"><i class="bi bi-trash"></i></button></td>
-                    <td><button class="btn btn-primary btnEditarJugador" data-bs-toggle="modal" data-bs-target="#editModal"   data-id="${doc.id}"><i class="bi bi-pencil"></i></button></td>
+                    <td><button class="btn btn-primary btnEditarJugador" data-bs-toggle="modal" data-bs-target="#editModal" data-id="${doc.id}"><i class="bi bi-pencil"></i></button></td>
+                    <td><button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#qrModal" data-id="${doc.id}" id="btnGenerarQR"><i class="bi bi-qr-code"></i></button></td>
                 </tr>`;
     });
+
+
+    const btnGenerarQR = document.querySelector("#btnGenerarQR");
+    btnGenerarQR.addEventListener("click", (e) => {
+      e.preventDefault();
+      const formulario = document.getElementById('formulario');
+      const contenedorQR = document.querySelector("#contenedorQR");
+      const QR = new QRCode(contenedorQR);
+        QR.makeCode(formulario.id.valueOf);
+    })
+
 
     const btnsDelete = document.querySelectorAll(".btnEliminarJugador");
     //console.log(btnsDelete);
